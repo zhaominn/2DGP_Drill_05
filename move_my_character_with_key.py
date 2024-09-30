@@ -40,8 +40,10 @@ def draw_character():
         imageNum = 2
     elif dirY > 0:
         imageNum = 3
-    else:
+    elif dirY < 0:
         imageNum = 1
+    else:
+        imageNum = 4
 
     if imageNum == 0:
         if frame < 4:
