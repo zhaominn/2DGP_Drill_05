@@ -16,16 +16,12 @@ def handle_events():
 
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
-                if x <= 770:
                     dirX += 1
             elif event.key == SDLK_LEFT:
-                if x >= 30:
                     dirX -= 1
             elif event.key == SDLK_UP:
-                if y <= 570:
                     dirY += 1
             elif event.key == SDLK_DOWN:
-                if y >= 30:
                     dirY -= 1
             elif event.key == SDLK_ESCAPE:
                 running = False
@@ -71,8 +67,10 @@ while running:
     update_canvas()
     handle_events()
     frame = (frame + 1) % 9
-    x += dirX * 5
-    y += dirY * 5
+    if 20 <= x + dirX * 5 <= 780:
+        x += dirX * 5
+    if 40 <= y + dirY * 5 <= 560:
+        y += dirY * 5
     delay(0.05)
 
 close_canvas()
