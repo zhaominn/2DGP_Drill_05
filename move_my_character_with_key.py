@@ -30,14 +30,10 @@ def handle_events():
             elif event.key == SDLK_ESCAPE:
                 running = False
         elif event.type==SDL_KEYUP:
-            if event.key == SDLK_RIGHT:
-                dirX-=1
-            elif event.key == SDLK_LEFT:
-                dirX+=1
-            elif event.key == SDLK_UP:
-                dirY-=1
-            elif event.key == SDLK_DOWN:
-                dirY+=1
+            if dirX != 0:
+                dirX = 0
+            if dirY != 0:
+                dirY = 0
 
 def draw_character():
     global frame
@@ -58,7 +54,7 @@ def draw_character():
             character.clip_draw((frame - 4) * 100, 0, 100, 100, x, y)
     else:
         character.clip_draw(frame * 64, 136 + imageNum * 64, 64, 64, x, y,100,100)
-    pass
+
 
 running = True
 x = 800 // 2
