@@ -49,7 +49,7 @@ def draw_character():
         else:
             character.clip_draw((frame - 4) * 100, 0, 100, 100, x, y)
     else:
-        character.clip_draw(frame * 64, 136 + imageNum * 64, 64, 64, x, y,100,100)
+        character.clip_draw(frame * 64, 136 + imageNum * 64, 64, 64, x, y, 100, 100)
 
 
 running = True
