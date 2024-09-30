@@ -45,7 +45,7 @@ dirY = 0
 
 while running:
     clear_canvas()
-    ground.draw(400, 300)
+    ground.clip_draw(0,0, 1280, 1024, 400, 300,800,600)
     character.clip_draw(frame * 64, 64, 64, 64, x, y)
     update_canvas()
     handle_events()
