@@ -2,12 +2,12 @@ from pico2d import *
 
 
 open_canvas()
-character = load_image('BODY_skeleton.png')
+character = load_image('BODY_skeleton1.png')
 ground = load_image('TUK_GROUND.png')
 
 
 def handle_events():
-    global running, dirX, dirY
+    global running, dirX, dirY, x, y
 
     events = get_events()
     for event in events:
@@ -16,13 +16,17 @@ def handle_events():
 
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
-                dirX += 1
+                if x <= 770:
+                    dirX += 1
             elif event.key == SDLK_LEFT:
-                dirX -= 1
+                if x >= 30:
+                    dirX -= 1
             elif event.key == SDLK_UP:
-                dirY += 1
+                if y <= 570:
+                    dirY += 1
             elif event.key == SDLK_DOWN:
-                dirY -= 1
+                if y >= 30:
+                    dirY -= 1
             elif event.key == SDLK_ESCAPE:
                 running = False
         elif event.type==SDL_KEYUP:
@@ -36,7 +40,7 @@ def handle_events():
                 dirY+=1
 
 def draw_character():
-    imageNum = 1
+    global frame
 
     if dirX > 0:
         imageNum = 0
@@ -46,7 +50,14 @@ def draw_character():
         imageNum = 3
     else:
         imageNum = 1
-    character.clip_draw(frame * 64, imageNum * 64, 64, 64, x, y,100,100)
+
+    if imageNum == 0:
+        if frame < 4:
+            character.clip_draw(frame * 100, 100, 100, 100, x, y)
+        else:
+            character.clip_draw((frame - 4) * 100, 0, 100, 100, x, y)
+    else:
+        character.clip_draw(frame * 64, 136 + imageNum * 64, 64, 64, x, y,100,100)
     pass
 
 running = True
