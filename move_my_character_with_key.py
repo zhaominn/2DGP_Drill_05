@@ -36,7 +36,17 @@ def handle_events():
                 dirY+=1
 
 def draw_character():
-    character.clip_draw(frame * 64, 64, 64, 64, x, y)
+    imageNum = 1
+
+    if dirX > 0:
+        imageNum = 0
+    elif dirX < 0:
+        imageNum = 2
+    elif dirY > 0:
+        imageNum = 3
+    else:
+        imageNum = 1
+    character.clip_draw(frame * 64, imageNum * 64, 64, 64, x, y,100,100)
     pass
 
 running = True
